@@ -381,13 +381,6 @@ def prepare_and_test_ssh_container(
             f"Failed to run whoami on test container {container.get_wrapped_container().id}"
         )
 
-    fork_context = multiprocessing.get_context("fork")
-
-    mocker.patch(
-        "autosubmit.platforms.platform.multiprocessing.get_context",
-        return_value=fork_context,
-    )
-
     container.exec(
         [
             "bash",

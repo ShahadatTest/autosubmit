@@ -1783,10 +1783,10 @@ class Job:
         parameters['CURRENT_EXCLUSIVITY'] = parameters.get('CURRENT_EXCLUSIVITY', self.platform.exclusivity)
         parameters['CURRENT_HYPERTHREADING'] = parameters.get('CURRENT_HYPERTHREADING', self.platform.hyperthreading)
         parameters['CURRENT_TYPE'] = parameters.get('CURRENT_TYPE', self.platform.TYPE.value)
-        parameters['CURRENT_SCRATCH_DIR'] = parameters.get('CURRENT_SCRATCH_DIR', self.platform.scratch)
-        parameters['CURRENT_PROJ_DIR'] = parameters.get('CURRENT_PROJ_DIR', str(self.platform.project_dir))
-        parameters['CURRENT_ROOTDIR'] = parameters.get('CURRENT_ROOTDIR', self.platform.root_dir)
-        parameters['CURRENT_LOGDIR'] = parameters.get('CURRENT_LOGDIR', self.platform.files_path)
+        parameters['CURRENT_SCRATCH_DIR'] = parameters.get('CURRENT_SCRATCH_DIR', Path(self.platform.scratch))
+        parameters['CURRENT_PROJ_DIR'] = parameters.get('CURRENT_PROJ_DIR', Path(self.platform.project_dir))
+        parameters['CURRENT_ROOTDIR'] = parameters.get('CURRENT_ROOTDIR', Path(self.platform.root_dir))
+        parameters['CURRENT_LOGDIR'] = parameters.get('CURRENT_LOGDIR', Path(self.platform.files_path))
 
         for key, value in as_conf.jobs_data[self.section].items():
             parameters[f"CURRENT_{key.upper()}"] = value

@@ -312,21 +312,21 @@ class LocalPlatform(ParamikoPlatform):
         path_root = ""
         try:
             path_root = self.files_path
-            (Path(path_root) / src).rename(Path(path_root) / dest)
+            (path_root / src).rename(Path(path_root) / dest)
             return True
         except OSError as e:
             if must_exist:
-                raise AutosubmitError(f"File {Path(path_root) / src} does not exist", 6004, str(e))
+                raise AutosubmitError(f"File {path_root / src} does not exist", 6004, str(e))
             else:
-                Log.debug(f"File {path_root} does not exist ")
+                Log.debug(f"File {str(path_root)} does not exist ")
                 return False
         except Exception as e:
             if str(e) in "Garbage":
-                raise AutosubmitError(f"File {Path(self.files_path) / src} does not exist", 6004, str(e))
+                raise AutosubmitError(f"File {self.files_path / src} does not exist", 6004, str(e))
             if must_exist:
-                raise AutosubmitError(f"File {Path(self.files_path) / src} does not exist", 6004, str(e))
+                raise AutosubmitError(f"File {self.files_path / src} does not exist", 6004, str(e))
             else:
-                Log.printlog(f"Log file couldn't be moved: {Path(self.files_path) / src}", 5001)
+                Log.printlog(f"Log file couldn't be moved: {self.files_path / src}", 5001)
                 return False
 
     def get_ssh_output(self):

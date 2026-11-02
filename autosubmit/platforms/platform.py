@@ -719,7 +719,7 @@ class Platform(ABC):
         return False
 
     @property
-    def files_path(self) -> str:
+    def files_path(self) -> Path:
         """The platform's LOG directory.
 
         :autosubmit-group: JOB
@@ -729,7 +729,7 @@ class Platform(ABC):
         else:
             path = self.remote_log_dir
 
-        return str(path)
+        return path
 
     def check_all_jobs(self, job_list: list['Job'], as_conf: 'AutosubmitConfig', retries: int = 5):
         """Checks jobs running status
